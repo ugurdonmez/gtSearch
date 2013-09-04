@@ -1,0 +1,8 @@
+content     mohse    chrome/content/
+content     mohse    chrome/content/ contentaccessible=yes
+overlay chrome://browser/content/browser.xul chrome://mohse/content/browser.xul
+
+locale	mohse	en-US	locale/en-US/
+
+skin	mohse	classic/1.0	skin/
+style	chrome://global/content/customizeToolbar.xul	chrome://mohse/skin/skin.css

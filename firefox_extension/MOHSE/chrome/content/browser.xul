@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://mohse/skin/skin.css" type="text/css"?> 
+<!DOCTYPE mohse SYSTEM "chrome://mohse/locale/translations.dtd">
+<overlay id="sample" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+		<script src="mohse.js" />
+</overlay>

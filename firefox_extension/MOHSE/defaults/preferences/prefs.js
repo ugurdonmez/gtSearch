@@ -1,0 +1,1 @@
+pref("extensions.mohse.autorun", false);
