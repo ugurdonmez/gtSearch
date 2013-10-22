@@ -8,7 +8,6 @@ package tr.edu.metu.ncc.cng.gtsearch.xmlparser.solr;
  *
  * @author ugur
  */
-import tr.edu.metu.ncc.cng.gtsearch.xmlparser.ks.*;
 import java.util.ArrayList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -72,13 +71,13 @@ public class SolrDefaultHandler extends DefaultHandler {
         }
         else if (qName.equalsIgnoreCase("str")) {
             if (type == XmlType.CONTENT) {
-                solrDocument.setContent(temp);
+                // solrDocument.setContent(temp);
             }
             else if (type == XmlType.TITLE) {
                 solrDocument.setTitle(temp);
             }
             else if (type == XmlType.URL) {
-                solrDocument.setUrl(temp);
+                // solrDocument.setUrl(temp);
             }
             else if (type == XmlType.HOST) {
                 solrDocument.setHost(temp);

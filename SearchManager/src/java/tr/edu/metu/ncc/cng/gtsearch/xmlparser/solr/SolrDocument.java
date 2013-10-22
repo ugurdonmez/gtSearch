@@ -12,8 +12,8 @@ public class SolrDocument {
     
     private String title;
     private String host;
-    private String content;
-    private String url;
+    //private String content;
+    //private String url;
 
     public SolrDocument() {
     }
@@ -21,8 +21,8 @@ public class SolrDocument {
     public SolrDocument(String title, String host, String content, String url) {
         this.title = title;
         this.host = host;
-        this.content = content;
-        this.url = url;
+        //this.content = content;
+        //this.url = url;
     }
 
     public String getTitle() {
@@ -41,20 +41,20 @@ public class SolrDocument {
         this.host = host;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+//    public String getContent() {
+//        return content;
+//    }
+//
+//    public void setContent(String content) {
+//        this.content = content;
+//    }
+//
+//    public String getUrl() {
+//        return url;
+//    }
+//
+//    public void setUrl(String url) {
+//        this.url = url;
+//    }
     
 }

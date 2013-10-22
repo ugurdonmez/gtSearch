@@ -11,8 +11,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import tr.edu.metu.ncc.cng.gtsearch.xmlparser.ks.MohseContext;
@@ -26,14 +24,12 @@ import tr.edu.metu.ncc.cng.gtsearch.xmlparser.solr.SolrParser;
 public class SolrManager {
     
     public ArrayList<SolrDocument> getResultFromSolrServer(String query) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
+        
+        
         String url = createQueryUrl(query);
-        
-        System.out.println("url " + url);
-        
+                
         String resultXml = getResultStrFromServer(url);
-        
-        System.out.println("result " + resultXml);
-        
+                
         SolrParser parser = new SolrParser();
         if( resultXml.equals("") ) {
             return new ArrayList<SolrDocument>();
@@ -48,7 +44,6 @@ public class SolrManager {
         ArrayList<SolrDocument> documents = new ArrayList<SolrDocument>();
         
         for ( MohseContext context : keywordsTr ) {
-            System.out.println("solr executed");
             documents.addAll(getResultFromSolrServer(context.getTerm()));
         }
         
@@ -57,6 +52,12 @@ public class SolrManager {
     }
     
     private String getResultStrFromServer(String URL) throws MalformedURLException {
+        
+        // control cache if contains send directly
+        if (SolrCache.getInstance().getSolrCache().containsKey(URL)) {
+            return SolrCache.getInstance().getSolrCache().get(URL);
+        }
+        
         StringBuilder buf = new StringBuilder();
         
         URL ks_url = new URL(URL);
@@ -73,6 +74,9 @@ public class SolrManager {
         } catch (IOException ex) {
             return buf.toString();
         }
+        
+        // insert to SolrCache
+        SolrCache.getInstance().getSolrCache().put(URL, buf.toString());
          
         return buf.toString();
     }

@@ -35,13 +35,13 @@ public class ManagerServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         
-        String query =  request.getParameter("query"); 
+        String query =  request.getParameter("query");
         
         MultilingualSearchManager msm = new MultilingualSearchManager();
         
         ArrayList<SolrDocument> documents = null;
                 
-        documents = msm.getQueryResults("http://localhost:8080/rdf/fishery.rdf", query);
+        documents = msm.getQueryResults("http://localhost:8080/ks/KnowledgeService","http://localhost:8080/rdf/fishery.rdf", query);
         
         request.getSession().setAttribute("documents", documents);
                 

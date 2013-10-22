@@ -21,7 +21,7 @@
         if (arr.isEmpty() == false) {
             for (int i = 0; i < arr.size(); i++) {
                 title = arr.get(i).getTitle();
-                url =  arr.get(i).getUrl();
+                url =  arr.get(i).getHost();
                 %>
                 <tr>
                     <td>

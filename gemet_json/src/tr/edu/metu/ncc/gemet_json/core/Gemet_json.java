@@ -11,6 +11,7 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -24,33 +25,52 @@ public class Gemet_json {
      */
     public static void main(String[] args) {
 
-        String keyword = "fishery";
+        // String keyword = "biology";
 
-        ClientConfig config = new DefaultClientConfig();
-        Client client = Client.create(config);
+        ArrayList<String> keywords = new ArrayList<String>();
 
-        WebResource service = client.resource(URIBuilder.getConceptMatchingKeywordsURI(keyword));
+        //keywords.add("chemistry");
+        // keywords.add("climate");
+        // keywords.add("economics");
+        // keywords.add("energy");
+        //// keywords.add("general");
+        // keywords.add("information");
+        // //keywords.add("materials");
+        // keywords.add("physics");
+        // keywords.add("pollution");
+        ////keywords.add("resources");
+        //// keywords.add("tourism");
+        //// keywords.add("transport");
+        keywords.add("waste");
+        keywords.add("water");
 
-        String keywordResponse = service.accept(MediaType.APPLICATION_XML).get(String.class);
+        for (String keyword : keywords) {
 
-        Gson gson = new Gson();
 
-        KeywordData[] data = gson.fromJson(keywordResponse, KeywordData[].class);
+            ClientConfig config = new DefaultClientConfig();
+            Client client = Client.create(config);
 
-        Concepts concepts = new Concepts(data[0].getUri());
+            WebResource service = client.resource(URIBuilder.getConceptMatchingKeywordsURI(keyword));
 
-        try {
-            // Create file 
-            FileWriter fstream = new FileWriter("out.txt");
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write(concepts.xmlConcepts());
-            //Close the output stream
-            out.close();
-        } catch (Exception e) {//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
+            String keywordResponse = service.accept(MediaType.APPLICATION_XML).get(String.class);
+
+            Gson gson = new Gson();
+
+            KeywordData[] data = gson.fromJson(keywordResponse, KeywordData[].class);
+
+            Concepts concepts = new Concepts(data[0].getUri());
+
+            try {
+                // Create file 
+                FileWriter fstream = new FileWriter(keyword + ".rdf");
+                BufferedWriter out = new BufferedWriter(fstream);
+                out.write(concepts.xmlConcepts());
+                //Close the output stream
+                out.close();
+            } catch (Exception e) {//Catch exception if any
+                System.err.println("Error: " + e.getMessage());
+            }
         }
 
     }
-
-    
 }
