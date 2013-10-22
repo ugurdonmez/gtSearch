@@ -41,7 +41,7 @@ public class Gemet_json {
         ////keywords.add("resources");
         //// keywords.add("tourism");
         //// keywords.add("transport");
-        keywords.add("waste");
+        // keywords.add("waste");
         keywords.add("water");
 
         for (String keyword : keywords) {
@@ -55,7 +55,9 @@ public class Gemet_json {
             String keywordResponse = service.accept(MediaType.APPLICATION_XML).get(String.class);
 
             Gson gson = new Gson();
-
+            
+            
+            // if there is no response, get exception
             KeywordData[] data = gson.fromJson(keywordResponse, KeywordData[].class);
 
             Concepts concepts = new Concepts(data[0].getUri());

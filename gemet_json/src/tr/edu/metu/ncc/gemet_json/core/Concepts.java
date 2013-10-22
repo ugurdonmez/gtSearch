@@ -18,7 +18,9 @@ public final class Concepts {
 
     public Concepts(String concept) {
         
-        concepts = new HashMap<>();
+        System.out.println("Concepts constructors" + concept);
+        
+        concepts = new HashMap<String,Concept>();
         this.mainConcept = concept;
         addToConcepts(concept);
     }
